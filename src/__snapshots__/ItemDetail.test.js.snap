@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <h3>
+      testItem
+    </h3>
+    <p>
+      tesing
+    </p>
+    <img
+      alt=""
+      src="https://images.samsung.com/is/image/samsung/latin_en-hd-j4300ah-un32j4300ahxpa-001-front-indigo-blue"
+      style="width: 250px;"
+    />
+    <div>
+      <button
+        id="1"
+      >
+        $100
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
