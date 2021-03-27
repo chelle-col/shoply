@@ -1,13 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import ItemDetails from './ItemDetails';
+import ItemSmall from './ItemSmall';
 
 const ShopMart = () => {
-    const mart = useSelector(st => st.mart.products);
+    const products = useSelector(st => st.mart.products);
     return (
         <>
-        <h1> I am a Shop Mart</h1>
-        {Object.entries(mart).map( i => <ItemDetails key={i[0]} itemArray={i} />)}
+            {Object.entries(products).map( i => <ItemSmall key={i[0]} itemArray={i} />)}
         </>
     )
 }
