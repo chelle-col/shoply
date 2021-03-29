@@ -4,15 +4,21 @@ import { addToCart, changeAmount, remove } from './CartActions'
 
 const CartButton = ({ id })=>{
     const cart = useSelector( st => st.cart );
-    const item = useSelector(st => st.cart[id])
-    const [ amount, setAmount ] = useState(item ? item.amount : 0)
+    const [ amount, setAmount ] = useState(useSelector(st => {
+                const item = st.cart.filter( i => i.id===id );
+                    if( item.length > 0 ){
+                        return item[0].amount;
+                    }
+                    return 0;
+                }));   
+
     const dispatch = useDispatch();
 
     const handleClick = (change) => {
-        setAmount( amount => amount + change );
+        setAmount( amount + change );
         const item = cart.filter( i => i.id === id);
         if( item.length === 0 ){
-            dispatch( addToCart( id ));
+            dispatch(addToCart( id ));
         }
     }
 
@@ -20,12 +26,14 @@ const CartButton = ({ id })=>{
         const item = cart.filter( i => i.id === id);
         if( item.length > 0 ){
             dispatch( changeAmount( id, amount ));
-        }
-        if( amount === 0 ){
+        }else if( amount <= 0 ){
             dispatch( remove( id ));
         }
     }, [ amount ])
 
+
+    //If its not in cart id === undefined
+    
     return (
         <div>
             <button onClick={()=> handleClick(1)}>Up</button>
